@@ -1,7 +1,7 @@
-const spectrum = [0, 1, 2, 3, 5];
-const probabilities = [0, 0.8, 0.1, 0.1, 0.001];
+let spectrum = [0, 1, 2, 3, 5];
+let probabilities = [0, 0.8, 0.1, 0.1, 0.001];
 
-const initialMatrix = [
+let matrix = [
     [0, 0, 1, 0, 0],
     [1, 0, 0, 0, 0],
     [0, 1, 0, 0, 0],
@@ -39,4 +39,12 @@ function getRandomMatrix(b, h) {
     return matrix;
 }
 
-module.exports = { spectrum, probabilities, initialMatrix, generateRandomNumber, getRandomMatrix };
+function getMatrix() {
+    return matrix;
+}
+
+function setMatrix(newMatrix) {
+    matrix = newMatrix;
+}
+
+module.exports = { getMatrix, setMatrix, getRandomMatrix };

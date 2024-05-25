@@ -1,0 +1,24 @@
+{
+  "name": "Programmieren3",
+  "version": "1.0.0",
+  "description": "Hier habe ich etwas hinzugefügt asdasdasd asdasdasdasdasda",
+  "main": "express.js",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SalR8v/Programmieren3.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SalR8v/Programmieren3/issues"
+  },
+  "homepage": "https://github.com/SalR8v/Programmieren3#readme"
+}

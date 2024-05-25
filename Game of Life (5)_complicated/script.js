@@ -1,15 +1,12 @@
-const { initialMatrix, getRandomMatrix } = require('./matrix');
-const { Grass, Grazer /*, other classes */ } = require('./classes');
+const { initialMatrix, getRandomMatrix, matrix, grassArr, grazerArr, predatorArr, corpseArr, eradicatorArr } = require('./matrix.js');
+const Grass = require('./classes/Grass.js.js');
+const Grazer = require('./classes/Grazer.js.js');
+const Predator = require('./classes/Predator.js.js');
+const Corpse = require('./classes/Corpse.js.js');
+const Eradicator = require('./classes/Eradicator.js.js');
 
-let matrix = initialMatrix;  // Use initialMatrix here
 let cube_size = 5;
 let fr = 20;
-
-let grassArr = [];
-let grazerArr = [];
-let predatorArr = [];
-let corpseArr = [];
-let eradicatorArr = [];
 
 function setup() {
     matrix = getRandomMatrix(125, 125);
@@ -81,3 +78,6 @@ function draw() {
         }
     }
 }
+
+setup();
+draw();
