@@ -1,3 +1,2 @@
 # Programmieren3
-Hier habe ich etwas hinzugefügt
-asdasdasd asdasdasdasdasda 
+Füge einen Client Ordner hinzu, in dem du alle Server-Files speichern wirst.
