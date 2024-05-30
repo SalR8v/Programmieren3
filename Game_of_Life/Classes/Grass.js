@@ -1,5 +1,6 @@
-const { getMatrix } = require('../utils');
+const { getMatrix, random, grassArr } = require('../utils');
 const LivingEntity = require('./LivingEntity');
+
 
 class Grass extends LivingEntity{
     constructor(x,y){
@@ -8,6 +9,7 @@ class Grass extends LivingEntity{
     }
 
     mul() {
+        let matrix = getMatrix()
         this.rounds += 1;
         if (this.rounds >= 6){
             let emptyfields = this.findFields(0)

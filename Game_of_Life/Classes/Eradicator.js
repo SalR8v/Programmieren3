@@ -1,4 +1,4 @@
-const { getMatrix } = require('../utils');
+const { getMatrix, grassArr, grazerArr, predatorArr, corpseArr } = require('../utils');
 const LivingEntity = require('./LivingEntity');
 
 class Eradicator extends LivingEntity {
@@ -7,6 +7,7 @@ class Eradicator extends LivingEntity {
     }
 
     destroyNeighbours() {
+    let matrix = getMatrix()
     for (let i = 0; i < this.neighbours.length; i++) {
         let pos = this.neighbours[i];
         let posX = pos[0];

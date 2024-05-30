@@ -1,4 +1,5 @@
-const { getMatrix } = require('../utils');
+const { getMatrix, grassArr, corpseArr } = require('../utils');
+const Grass = require('./Grass');
 
 class Corpse {
     constructor(x, y) {
@@ -10,6 +11,7 @@ class Corpse {
     }
 
     decompose() {
+        let matrix = getMatrix()
         this.decompositionCounter++;
         if (this.decompositionCounter >= this.decompositionTime) {
         let grassObj = new Grass(this.x, this.y, 1); // Create a new Grass object with color code 1
@@ -21,13 +23,14 @@ class Corpse {
     
 
     destroy() {
-    // Remove the corpse from the matrix and the array of corpses
-    matrix[this.y][this.x] = 0; // Set the matrix value back to 0 to remove the corpse
-    for (let i = 0; i < corpseArr.length; i++) {
-        let corpseObj = corpseArr[i];
-        if (corpseObj.x === this.x && corpseObj.y === this.y) {
-        corpseArr.splice(i, 1);
-        break;
+        let matrix = getMatrix()
+        // Remove the corpse from the matrix and the array of corpses
+        matrix[this.y][this.x] = 0; // Set the matrix value back to 0 to remove the corpse
+        for (let i = 0; i < corpseArr.length; i++) {
+            let corpseObj = corpseArr[i];
+            if (corpseObj.x === this.x && corpseObj.y === this.y) {
+            corpseArr.splice(i, 1);
+            break;
         }
     }
 }}

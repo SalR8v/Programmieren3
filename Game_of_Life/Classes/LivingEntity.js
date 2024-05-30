@@ -1,4 +1,5 @@
-const { getMatrix } = require('../utils');
+const { getMatrix, random } = require('../utils');
+
 
 class LivingEntity {
     constructor(x,y, colorCode){
@@ -24,6 +25,7 @@ class LivingEntity {
 
     findFields(symbol){ 
         let found = [];
+        let matrix = getMatrix()
         for (let i = 0; i < this.neighbours.length; i++) {
             let pos = this.neighbours[i]; // [x,y]
             let posX = pos[0];
@@ -38,6 +40,7 @@ class LivingEntity {
     }
 
     move(){
+        let matrix = getMatrix()
         let emptyfields = this.findFields(0);
         if (emptyfields.length > 0) {
             let pos = random(emptyfields); // [x,y]
@@ -47,6 +50,7 @@ class LivingEntity {
             matrix[newY][newX] = this.colorCode;
             this.x = newX;
             this.y = newY;
+            this.updateNeighbours();
         }
     }
 }

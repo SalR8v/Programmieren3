@@ -11,6 +11,12 @@ let matrix = [
     [1, 1, 0, 0, 3]
 ];
 
+let grassArr = [];
+let grazerArr = [];
+let predatorArr = [];
+let corpseArr = [];
+let eradicatorArr = [];
+
 function generateRandomNumber(spectrum, probabilities) {
     if (spectrum.length !== probabilities.length) {
         throw new Error("Invalid input: Spectrum and probabilities arrays must have the same length.");
@@ -47,4 +53,19 @@ function setMatrix(newMatrix) {
     matrix = newMatrix;
 }
 
-module.exports = { getMatrix, setMatrix, getRandomMatrix };
+function random(...args) {
+    if (args.length === 0) {
+        return Math.random();
+    } else if (args.length === 1 && Array.isArray(args[0])) {
+        return args[0][Math.floor(Math.random() * args[0].length)];
+    } else if (args.length === 1 && typeof args[0] === 'number') {
+        return Math.floor(Math.random() * args[0]);
+    } else if (args.length === 2 && typeof args[0] === 'number' && typeof args[1] === 'number') {
+        return Math.floor(Math.random() * (args[1] - args[0] + 1) + args[0]);
+    } else {
+        console.log(args);
+        throw new Error('Invalid arguments');
+    }
+}
+
+module.exports = { getMatrix, setMatrix, getRandomMatrix, random, grassArr, grazerArr, predatorArr, corpseArr, eradicatorArr };

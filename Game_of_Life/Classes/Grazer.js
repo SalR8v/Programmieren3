@@ -1,5 +1,6 @@
-const { getMatrix } = require('../utils');
+const { getMatrix, random, grassArr, grazerArr, corpseArr } = require('../utils');
 const LivingEntity = require('./LivingEntity');
+const Corpse = require('./Corpse');
 
 class Grazer extends LivingEntity{
     constructor(x,y){
@@ -9,6 +10,7 @@ class Grazer extends LivingEntity{
     }
 
     eat(){
+        let matrix = getMatrix()
         let grassfields = this.findFields(1)
         if (grassfields.length > 0) {
             let pos = random(grassfields);
@@ -40,6 +42,7 @@ class Grazer extends LivingEntity{
     }  
 
     die(){
+        let matrix = getMatrix()
         let corpseObj = new Corpse(this.x, this.y);
         corpseArr.push(corpseObj);
         matrix[this.y][this.x] = corpseObj.colorCode;
@@ -54,6 +57,7 @@ class Grazer extends LivingEntity{
     }
 
     mul(){
+        let matrix = getMatrix()
         if (this.eaten >= 5) {
             let emptyfields = this.findFields(0)
             if (emptyfields.length > 0) {
