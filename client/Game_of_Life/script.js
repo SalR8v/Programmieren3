@@ -6,7 +6,7 @@ const Corpse = require('./Classes/Corpse');
 const Eradicator = require('./Classes/Eradicator');
 
 function setup() {
-    let matrix = getRandomMatrix(75, 75);
+    let matrix = getRandomMatrix(125, 125);
     setMatrix(matrix);
 
     for (let y = 0; y < matrix.length; y++) {
@@ -27,7 +27,7 @@ function setup() {
     // console.log('Initial Grass:', grassArr);
     // console.log('Initial Grazers:', grazerArr);
     // console.log('Initial Predators:', predatorArr);
-    logMatrix(getMatrix());
+    // logMatrix(getMatrix());
 }
 
 function draw() {
@@ -50,40 +50,13 @@ function draw() {
         eradicatorArr[i].destroyNeighbours();
     }
 
-    // Log matrix or some representation if needed for debugging
-    logMatrix(getMatrix());
+    console.log(grassArr.length, predatorArr.length, corpseArr.length, eradicatorArr.length, grazerArr.length)
+
 }
 
-function logMatrix(matrix) {
-    console.clear();  // Clear the console before logging the new matrix
-    for (let y = 0; y < matrix.length; y++) {
-        let row = '';
-        for (let x = 0; x < matrix[y].length; x++) {
-            row += getColor(matrix[y][x]) + matrix[y][x] + '\x1b[0m' + ' ';  // Add color and reset code
-        }
-        console.log(row.trim());
-    }
+
+
+module.exports = {
+    setup,
+    draw
 }
-
-function getColor(value) {
-    switch (value) {
-        case 0: return '\x1b[37m';  // White
-        case 1: return '\x1b[32m';  // Green
-        case 2: return '\x1b[33m';  // Yellow
-        case 3: return '\x1b[31m';  // Red
-        case 4: return '\x1b[90m';  // Grey
-        case 5: return '\x1b[35m';  // Purple
-        default: return '\x1b[0m';  // Reset to default
-    }
-}
-
-// function logMatrix(matrix) {
-//     console.clear();  // Clear the console before logging the new matrix
-//     for (let y = 0; y < matrix.length; y++) {
-//         console.log(matrix[y].join(' '));
-//     }
-// }
-
-// Initialize and run the simulation
-setup();
-setInterval(draw, 10);  // Call draw every second (1000 ms)

@@ -1,19 +1,20 @@
-const LivingEntity = require('./LivingEntity.js');
-const { matrix, predatorArr, grazerArr, corpseArr } = require('../matrix.js');
-const Corpse = require('./Corpse.js');
+const { getMatrix, random, grazerArr, predatorArr, corpseArr } = require('../utils');
+const LivingEntity = require('./LivingEntity');
+const Corpse = require('./Corpse');
 
-module.exports = class Predator extends LivingEntity {
-    constructor(x, y) {
-        super(x, y, 3);
-        this.eaten = 0;
-        this.notEaten = 0;
+class Predator extends LivingEntity {
+    constructor(x,y){
+        super(x, y, 3)
+        this.eaten = 0
+        this.notEaten = 0   
     }
 
-    eat() {
-        let grazerfields = this.findFields(2);
+    eat(){
+        let matrix = getMatrix()
+        let grazerfields = this.findFields(2)
         if (grazerfields.length > 0) {
-            let pos = grazerfields[Math.floor(Math.random() * grazerfields.length)];
-            let newX = pos[0];
+            let pos = random(grazerfields); //[x,y]
+            let newX = pos[0]; 
             let newY = pos[1];
             matrix[this.y][this.x] = 0;
             matrix[newY][newX] = this.colorCode;
@@ -26,43 +27,47 @@ module.exports = class Predator extends LivingEntity {
                     break;
                 }
             }
-            this.eaten++;
-            this.notEaten = 0;
-        } else {
+        this.eaten++;
+        this.notEaten = 0;
+        }else{
             this.notEaten++;
             if (this.notEaten >= 8) {
                 this.die();
-            } else {
+            } else{
                 this.move();
             }
         }
-    }
+    }  
 
-    die() {
+    die(){
+        let matrix = getMatrix()
         let corpseObj = new Corpse(this.x, this.y);
         corpseArr.push(corpseObj);
         matrix[this.y][this.x] = corpseObj.colorCode;
         for (let i = 0; i < predatorArr.length; i++) {
             let predatorObj = predatorArr[i];
             if (predatorObj.x === this.x && predatorObj.y === this.y) {
-                predatorArr.splice(i, 1);
+                predatorArr.splice(i, 1)
                 break;
             }
         }
     }
 
-    mul() {
+    mul(){
+        let matrix = getMatrix()
         if (this.eaten >= 3) {
-            this.eaten = 0;
-            let emptyfields = this.findFields(0);
+            this.eaten = 0 
+            let emptyfields = this.findFields(0)
             if (emptyfields.length > 0) {
-                let pos = emptyfields[Math.floor(Math.random() * emptyfields.length)];
-                let newX = pos[0];
+                let pos = random(emptyfields);
+                let newX = pos[0]; 
                 let newY = pos[1];
-                predatorArr.push(new Predator(newX, newY));
+                predatorArr.push(new Predator(newX, newY))
                 matrix[newY][newX] = this.colorCode;
             }
-            this.eaten = 0;
+            this.eaten = 0
         }
     }
-};
+}
+
+module.exports = Predator;

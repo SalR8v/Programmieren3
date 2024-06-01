@@ -1,7 +1,7 @@
-const spectrum = [0, 1, 2, 3, 5];
-const probabilities = [0, 0.8, 0.1, 0.1, 0.001];
+let spectrum = [0, 1, 2, 3, 5]; //nothing, grass, grazers, predators, eradicators
+let probabilities = [0, 0.8, 0.1, 0.1, 0.001]; //[0, 0.8, 0.1, 0.1, 0.001];
 
-let initialMatrix = [
+let matrix = [
     [0, 0, 1, 0, 0],
     [1, 0, 0, 0, 0],
     [0, 1, 0, 0, 0],
@@ -11,9 +11,6 @@ let initialMatrix = [
     [1, 1, 0, 0, 3]
 ];
 
-let matrix = initialMatrix;  // Initialize matrix with initialMatrix
-
-// Define the arrays
 let grassArr = [];
 let grazerArr = [];
 let predatorArr = [];
@@ -48,17 +45,27 @@ function getRandomMatrix(b, h) {
     return matrix;
 }
 
-// Export everything
-module.exports = {
-    spectrum,
-    probabilities,
-    initialMatrix,
-    matrix,
-    grassArr,
-    grazerArr,
-    predatorArr,
-    corpseArr,
-    eradicatorArr,
-    generateRandomNumber,
-    getRandomMatrix
-};
+function getMatrix() {
+    return matrix;
+}
+
+function setMatrix(newMatrix) {
+    matrix = newMatrix;
+}
+
+function random(...args) {
+    if (args.length === 0) {
+        return Math.random();
+    } else if (args.length === 1 && Array.isArray(args[0])) {
+        return args[0][Math.floor(Math.random() * args[0].length)];
+    } else if (args.length === 1 && typeof args[0] === 'number') {
+        return Math.floor(Math.random() * args[0]);
+    } else if (args.length === 2 && typeof args[0] === 'number' && typeof args[1] === 'number') {
+        return Math.floor(Math.random() * (args[1] - args[0] + 1) + args[0]);
+    } else {
+        console.log(args);
+        throw new Error('Invalid arguments');
+    }
+}
+
+module.exports = { getMatrix, setMatrix, getRandomMatrix, random, grassArr, grazerArr, predatorArr, corpseArr, eradicatorArr };
