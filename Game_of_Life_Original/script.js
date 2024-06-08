@@ -53,7 +53,8 @@ function setup() {
     matrix = getRandomMatrix(125,125)
     createCanvas(matrix[0].length * cube_size + 1, matrix.length * cube_size + 1);
     background("#acacac")
-    frameRate(fr)
+    //frameRate(fr)
+    noStroke()
 
     //Grassobjekt zum Testen
     //let grasObj = new Grass(2,0); // (x,y) x geht nach rechts und y geht nach unten
@@ -73,56 +74,58 @@ function setup() {
             }
         }
     }
-    console.log(grassArr)
-    console.log(grazerArr)
-    console.log(predatorArr)
+    // console.log(grassArr)
+    // console.log(grazerArr)
+    // console.log(predatorArr)
 }
 
 
 function draw() {
-    for (let i = 0; i < grassArr.length; i++) {
+    console.log(`Iteration Start - Grass: ${grassArr.length}, Grazer: ${grazerArr.length}, Predator: ${predatorArr.length}, Corpse: ${corpseArr.length}, Eradicator: ${eradicatorArr.length}`);
+    
+    for (let i = grassArr.length - 1; i >= 0; i--) {
         grassArr[i].mul();
     }
-    for (let i = 0; i < grazerArr.length; i++) {
-        grazerArr[i].mul()
-        grazerArr[i].eat() 
+    for (let i = grazerArr.length - 1; i >= 0; i--) {
+        grazerArr[i].mul();
+        grazerArr[i].eat();
     }
-    for (let i = 0; i < predatorArr.length; i++) {
-        predatorArr[i].mul()
-        predatorArr[i].eat() 
+    for (let i = predatorArr.length - 1; i >= 0; i--) {
+        predatorArr[i].mul();
+        predatorArr[i].eat();
     }
-    for (let i = 0; i < corpseArr.length; i++) {
-        corpseArr[i].decompose()
+    for (let i = corpseArr.length - 1; i >= 0; i--) {
+        corpseArr[i].decompose();
     }
-    for (let i = 0; i < eradicatorArr.length; i++) {
-        eradicatorArr[i].move()
-        eradicatorArr[i].destroyNeighbours()
-
-
+    for (let i = eradicatorArr.length - 1; i >= 0; i--) {
+        eradicatorArr[i].move();
+        eradicatorArr[i].destroyNeighbours();
     }
 
+    console.log(`Iteration End - Grass: ${grassArr.length}, Grazer: ${grazerArr.length}, Predator: ${predatorArr.length}, Corpse: ${corpseArr.length}, Eradicator: ${eradicatorArr.length}`);
 
     for (let y = 0; y < matrix.length; y++) {
         for (let x = 0; x < matrix[y].length; x++) {
             if (matrix[y][x] == 0) {
-                fill("white")
+                fill("white");
             }
             if (matrix[y][x] == 1) {
-                fill("green")
+                fill("green");
             }
             if (matrix[y][x] == 2) {
-                fill("yellow")
+                fill("yellow");
             }
             if (matrix[y][x] == 3) {
-                fill("red")
+                fill("red");
             }
             if (matrix[y][x] == 4) {
-                fill("grey")
+                fill("grey");
             }
             if (matrix[y][x] == 5) {
-                fill("purple")
+                fill("purple");
             }
             rect(cube_size * x, cube_size * y, cube_size, cube_size);
         }
     }
 }
+

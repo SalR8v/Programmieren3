@@ -1,5 +1,5 @@
 let spectrum = [0, 1, 2, 3, 5]; //nothing, grass, grazers, predators, eradicators
-let probabilities = [0, 0.8, 0.1, 0.1, 0.001]; //[0, 0.8, 0.1, 0.1, 0.001];
+let probabilities = [0, 0.8, 0.1, 0.001, 0.001]; //[0, 0.8, 0.1, 0.1, 0.001];
 
 let matrix = [
     [0, 0, 1, 0, 0],

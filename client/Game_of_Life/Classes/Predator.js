@@ -31,7 +31,7 @@ class Predator extends LivingEntity {
         this.notEaten = 0;
         }else{
             this.notEaten++;
-            if (this.notEaten >= 8) {
+            if (this.notEaten >= 35) { // 8
                 this.die();
             } else{
                 this.move();

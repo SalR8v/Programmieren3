@@ -25,7 +25,7 @@ class Corpse {
     destroy() {
         let matrix = getMatrix()
         // Remove the corpse from the matrix and the array of corpses
-        matrix[this.y][this.x] = 0; // Set the matrix value back to 0 to remove the corpse
+        // matrix[this.y][this.x] = 0; // Set the matrix value back to 0 to remove the corpse // This line is the cause.
         for (let i = 0; i < corpseArr.length; i++) {
             let corpseObj = corpseArr[i];
             if (corpseObj.x === this.x && corpseObj.y === this.y) {

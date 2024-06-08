@@ -1,7 +1,7 @@
 // Socket.io: Verbindung zum Server herstellen
 // Die socket Variable enthält eine Verbindung zum Server.
 const socket = io();
-const cellSize = 7;
+const cellSize = 3;
 
 // setup Funktion von p5.js
 function setup() {

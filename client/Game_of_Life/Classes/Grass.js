@@ -11,7 +11,7 @@ class Grass extends LivingEntity{
     mul() {
         let matrix = getMatrix()
         this.rounds += 1;
-        if (this.rounds >= 6){
+        if (this.rounds >= 6){ // 6
             let emptyfields = this.findFields(0)
             if(emptyfields.length > 0){
                 //zufällig ein Nachbarfeld-Pos auswählen
