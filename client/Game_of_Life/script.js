@@ -6,7 +6,7 @@ const Corpse = require('./Classes/Corpse');
 const Eradicator = require('./Classes/Eradicator');
 
 function setup() {
-    let matrix = getRandomMatrix(250, 250);
+    let matrix = getRandomMatrix(125, 125);
     setMatrix(matrix);
 
     for (let y = 0; y < matrix.length; y++) {

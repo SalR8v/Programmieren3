@@ -1,16 +1,48 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.3/p5.min.js"
       integrity="sha512-0zGLOFv/+OQ6YfVCSGDQWhrDRx0ONmBqWvs3gI4olm8i6xtKoG1FhEnB4eTaWCVnojyfUDgE8Izeln+mAJAkFA=="
       crossorigin="anonymous" referrerpolicy="no-referrer"></script>
    <script src="/socket.io/socket.io.js"></script>
    <script src="script.js"></script>
+   <style>
+       body {
+           margin: 0;
+           display: flex;
+       }
+       #canvas-holder {
+           flex-grow: 1;
+       }
+       #controls {
+           width: 200px;
+           padding: 20px;
+           border-left: 2px solid #000;
+           box-sizing: border-box;
+       }
+       button {
+           display: block;
+           margin-top: 20px;
+       }
+   </style>
 </head>
-
 <body>
-   <!-- hier können noch ein paar Informationen stehen
-   oder verschiedene buttons oder so -->
+   <div id="canvas-holder"></div>
+   <div id="controls">
+       <div id="entity-counts">
+           <p>Grass: <span id="grass-count">0</span></p>
+           <p>Grazers: <span id="grazer-count">0</span></p>
+           <p>Predators: <span id="predator-count">0</span></p>
+           <p>Corpses: <span id="corpse-count">0</span></p>
+           <p>Eradicators: <span id="eradicator-count">0</span></p>
+       </div>
+       <div id="speed-control">
+           <label for="speed-slider">Simulation Speed (Log Scale):</label>
+           <input type="range" id="speed-slider" min="1" max="100" value="50">
+       </div>
+       <button id="lightning-button">Rain Down Lightning</button>
+   </div>
 </body>
-
 </html>

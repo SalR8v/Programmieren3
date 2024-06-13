@@ -6,7 +6,7 @@ class Corpse {
         this.x = x;
         this.y = y;
         this.colorCode = 4;
-        this.decompositionTime = 7; // Define the time it takes for the corpse to decompose and spawn new grass
+        this.decompositionTime = Math.floor(Math.random() * (20 - 4 + 1)) + 4; // Random number between 4 and 20
         this.decompositionCounter = 0; // Counter to keep track of the decomposition progress
     }
 

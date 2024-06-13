@@ -1,44 +1,63 @@
 // Socket.io: Verbindung zum Server herstellen
 // Die socket Variable enthält eine Verbindung zum Server.
 const socket = io();
-const cellSize = 3;
+const cellSize = 6;
 
-// setup Funktion von p5.js
 function setup() {
-    createCanvas(windowWidth, windowHeight);
-    noStroke()
+    let canvasHolderWidth = windowWidth - 200; // Adjust the width to leave space for the scoreboard
+    let canvas = createCanvas(canvasHolderWidth, windowHeight);
+    canvas.parent('canvas-holder');
+    noStroke();
+
+    const speedSlider = document.getElementById('speed-slider');
+    speedSlider.addEventListener('input', () => {
+        const minSpeed = 10;
+        const maxSpeed = 1000;
+        const value = parseInt(speedSlider.value);
+        const speed = Math.round(minSpeed * Math.pow(maxSpeed / minSpeed, value / 100));
+        socket.emit('changeSpeed', speed);
+    });
+
+    const lightningButton = document.getElementById('lightning-button');
+    lightningButton.addEventListener('click', () => {
+        socket.emit('lightningStrike');
+    });
 }
 
-// Mit socket.on() können wir auf Ereignisse vom Server reagieren.
-// Hier reagieren wir auf das Ereignis matrix, das uns die aktuelle Matrix vom Server sendet.
 socket.on('matrix', (matrix) => {
-    // Die Matrix wird auf den Bildschirm gezeichnet.
     for (let y = 0; y < matrix.length; y++) {
         for (let x = 0; x < matrix[y].length; x++) {
             if (matrix[y][x] == 0) {
-                fill("white")
+                fill("white");
             }
             if (matrix[y][x] == 1) {
-                fill("green")
+                fill("green");
             }
             if (matrix[y][x] == 2) {
-                fill("yellow")
+                fill("yellow");
             }
             if (matrix[y][x] == 3) {
-                fill("red")
+                fill("red");
             }
             if (matrix[y][x] == 4) {
-                fill("grey")
+                fill("grey");
             }
             if (matrix[y][x] == 5) {
-                fill("purple")
+                fill("purple");
+            }
+            if (matrix[y][x] == 6) {
+                fill("orange");
             }
             rect(cellSize * x, cellSize * y, cellSize, cellSize);
         }
     }
 });
 
-
-
-// wir können hier auch auf andere Ereignisse reagieren, die der Server sendet
-// socket.on('someEvent', (data) => {
+// Event listener for entity counts
+socket.on('entityCounts', (counts) => {
+    document.getElementById('grass-count').textContent = counts.grass;
+    document.getElementById('grazer-count').textContent = counts.grazers;
+    document.getElementById('predator-count').textContent = counts.predators;
+    document.getElementById('corpse-count').textContent = counts.corpses;
+    document.getElementById('eradicator-count').textContent = counts.eradicators;
+});
