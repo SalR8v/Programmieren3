@@ -1,12 +1,12 @@
 # Programmieren3
 Anleitung wie man das Spiel startet.
 
-> Importiere aus Github den Code und öffne ihn in VSCode
-> Gehe in den Ordner client
-> öffne ein neues Terminal
-> führe node server.js aus
-> öffne im Browser http://localhost:3000
-> viel Spaß
+> importiere aus Github den Code und öffne ihn in VSCode;
+> gehe in den Ordner client;
+> öffne ein neues Terminal;
+> führe node server.js aus;
+> öffne im Browser http://localhost:3000;
+> viel Spaß;
 
 Endwort:
 
